@@ -53,7 +53,34 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>Find its Successors Or neighbors and Check whether the node is visited or not</li>
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
+<h3>Progam:</h3>
+from collections import defaultdict
 
+def dfs(graph, node, visited, path):
+    visited.add(node)
+    path.append(node)
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited, path)
+
+v, e = map(int, input().split())
+
+graph = defaultdict(list)
+
+for _ in range(e):
+    u, w = input().split()
+    graph[u].append(w)
+    graph[w].append(u)
+
+start = '0' if '0' in graph else 'A'
+
+visited = set()
+path = []
+
+dfs(graph, start, visited, path)
+
+print(path)
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -67,6 +94,10 @@ C G <BR>
 D F <BR>
 G F <BR>
 F H <BR>
+
+<h3>Output:</h3>
+<img width="1387" height="267" alt="image" src="https://github.com/user-attachments/assets/79e55d17-7a36-4920-b71d-e8d006fc3eba" />
+
 <hr>
 <h3>Sample Output</h3>
 <hr>
@@ -87,6 +118,9 @@ F H <BR>
 <h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
+
+<h3>Output:</h3>
+<img width="1426" height="178" alt="image" src="https://github.com/user-attachments/assets/21edab40-2833-4d91-a3b9-92fb17ee56cb" />
 
 <hr>
 <h3>Result:</h3>
